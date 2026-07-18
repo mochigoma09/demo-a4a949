@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- ============================================================
+     head.html — 全デモ共通の <head> 不変ブロック（SEO）。
+     各デモの <head> に必ず含める。{{...}} は案件情報で差し替え。
+     ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>アンジーペットクリニック｜動物病院</title>
+<meta name="description" content="杉並区のアンジーペットクリニックは、高い評価と地域密着の温かい医療で、大切なご家族の健康を守ります。安心と信頼の獣医療を。">
+<link rel="canonical" href="https://mochigoma09.github.io/demo-a4a949/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="アンジーペットクリニック">
+<meta property="og:title" content="アンジーペットクリニック｜動物病院">
+<meta property="og:description" content="杉並区のアンジーペットクリニックは、高い評価と地域密着の温かい医療で、大切なご家族の健康を守ります。安心と信頼の獣医療を。">
+<meta property="og:url" content="https://mochigoma09.github.io/demo-a4a949/">
+<meta property="og:image" content="">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="アンジーペットクリニック｜動物病院">
+<meta name="twitter:description" content="杉並区のアンジーペットクリニックは、高い評価と地域密着の温かい医療で、大切なご家族の健康を守ります。安心と信頼の獣医療を。">
+<meta name="twitter:image" content="">
+
+<!-- 構造化データ（VeterinaryCare は preset の schema.orgサブタイプ。住所/電話は実値へ） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://mochigoma09.github.io/demo-a4a949/#org", "name": "アンジーペットクリニック", "url": "https://mochigoma09.github.io/demo-a4a949/" },
+    { "@type": "WebSite", "@id": "https://mochigoma09.github.io/demo-a4a949/#site", "url": "https://mochigoma09.github.io/demo-a4a949/", "name": "アンジーペットクリニック", "publisher": { "@id": "https://mochigoma09.github.io/demo-a4a949/#org" } },
+    { "@type": "VeterinaryCare", "@id": "https://mochigoma09.github.io/demo-a4a949/#biz", "name": "アンジーペットクリニック", "url": "https://mochigoma09.github.io/demo-a4a949/", "telephone": "03-6875-5925", "address": { "@type": "PostalAddress", "addressCountry": "JP", "addressRegion": "東京都", "addressLocality": "杉並区", "streetAddress": "成田東３丁目１５−１" } }
+  ]
+}
+</script>
+
+<!-- フォント（コンセプトで差し替え） / 土台CSS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base/base.css">
+<!-- ↑ 案件コンセプトのトークンは、この後に <style>
+/* ============================================================
+   base.css — 全デモ共通の「不変の土台」（品質の担保。見た目の個性はここに持たせない）
+   各デモHTMLは必ずこれを読み込み、レイアウト/世界観は自由に作る。
+   固定するのは：リセット / トークンの“契約”（変数名）/ a11y / 再利用部品 のみ。
+   ============================================================ */
+
+/* --- デザイントークンの契約（値は案件コンセプトで :root を上書きする） --- */
+:root {
+  --color-primary: #1f3a5f;
+  --color-accent:  #b89150;
+  --color-text:    #2a2e35;
+  --color-bg:      #ffffff;
+  --color-surface: #f5f7fa;
+  --color-line:    rgba(0, 0, 0, 0.12);
+  --font-heading:  "Noto Serif JP", serif;
+  --font-body:     system-ui, -apple-system, "Noto Sans JP", sans-serif;
+  --radius:        14px;
+  --container:     1120px;
+}
+
+/* --- reset（wp-theme-starter から移植） --- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { min-height: 100vh; font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+img, svg, video, picture { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: 0; cursor: pointer; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.4; }
+ul, ol { list-style: none; padding: 0; }
+
+/* --- a11y（不変） --- */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
+
+/* --- 再利用部品（配色/形はトークン依存＝案件で変わる。構造だけ共通） --- */
+.l-wrapper { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 20px; }
+
+.c-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 32px; font-weight: 700; border-radius: 999px; color: #fff; background: var(--color-primary); transition: transform .25s, box-shadow .25s; }
+.c-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+
+/* 全画面ハンバーガー（1024px以下） */
+.c-hamburger { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; position: relative; z-index: 1001; }
+.c-hamburger__bars, .c-hamburger__bars::before, .c-hamburger__bars::after { content: ""; display: block; width: 24px; height: 2px; background: var(--color-text); transition: transform .3s, opacity .3s; }
+.c-hamburger__bars { position: relative; }
+.c-hamburger__bars::before { position: absolute; top: -7px; left: 0; }
+.c-hamburger__bars::after  { position: absolute; top: 7px;  left: 0; }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars { background: transparent; }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars::before { transform: translateY(7px) rotate(45deg); }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars::after  { transform: translateY(-7px) rotate(-45deg); }
+.c-nav { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(12px); opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; font-family: var(--font-heading); font-size: 1.2rem; }
+.c-nav.is-open { opacity: 1; visibility: visible; }
+@media (min-width: 1025px) {
+  .c-hamburger { display: none; }
+  .c-nav { position: static; flex-direction: row; gap: 32px; background: none; backdrop-filter: none; opacity: 1; visibility: visible; font-size: 1rem; }
+}
+
+/* スクロールリビール（nav.jsがJSで付与する。JS無効環境では何も付かず常に表示） */
+.js-reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.js-reveal.is-inview { opacity: 1; transform: none; }
+
+/* 追従フローティングCTA（1024px以下） */
+.c-floating-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 800; display: flex; justify-content: center; padding: 0 16px 14px; pointer-events: none; }
+.c-floating-cta .c-btn { pointer-events: auto; width: 100%; max-width: 520px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+body { padding-bottom: 84px; } /* CTA分の余白 */
+@media (min-width: 1025px) { .c-floating-cta { display: none; } body { padding-bottom: 0; } }
+
+</style>
+<style>:root{ --color-primary: ...; }</style> で上書きする -->
+<style>
+:root {
+  --color-primary: #5A7D6F;
+  --color-accent: #C9B47E;
+  --color-surface: #F9F7F4;
+  --color-text: #3D3D3D;
+  --font-heading: 'Shippori Mincho B1', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --radius: 0px; /* 誠実さと専門性のために角を立たせる */
+}
+
+/* --- Layout Theme: Asymmetric & Whitespace --- */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.l-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(249, 247, 244, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(90, 125, 111, 0.1);
+}
+@media (max-width: 1024px) {
+  .l-header { padding: 0 20px; height: 64px; }
+}
+
+.p-logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+}
+
+/* Section Spacing */
+section {
+  padding: 120px 0;
+}
+@media (max-width: 768px) {
+  section { padding: 80px 0; }
+}
+
+/* Typography Hierarchy */
+.u-display {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+.u-heading-large {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.u-eyebrow {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+/* Hero Section */
+.p-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+}
+.p-hero__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 40px;
+}
+.p-hero__content {
+  position: relative;
+  z-index: 2;
+}
+.p-hero__image {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+.p-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 1024px) {
+  .p-hero__inner { grid-template-columns: 1fr; }
+  .p-hero__image { height: 50vh; order: -1; }
+  .p-hero { min-height: auto; padding-bottom: 60px; }
+}
+
+/* Problem Section */
+.p-problem {
+  background: #fff;
+}
+.p-problem__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+.p-problem__text {
+  grid-column: 2 / 7;
+}
+.p-problem__list {
+  grid-column: 8 / 12;
+  border-left: 1px solid var(--color-line);
+  padding-left: 40px;
+}
+@media (max-width: 1024px) {
+  .p-problem__text, .p-problem__list { grid-column: 1 / -1; }
+  .p-problem__list { border-left: 0; padding-left: 0; margin-top: 40px; }
+}
+.p-problem__item {
+  margin-bottom: 32px;
+}
+.p-problem__item-q {
+  font-weight: 700;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Menu Section */
+.p-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--color-line);
+}
+.p-menu__card {
+  background: var(--color-surface);
+  padding: 60px 40px;
+  transition: background 0.4s;
+}
+.p-menu__card:hover {
+  background: #fff;
+}
+.p-menu__card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+@media (max-width: 1024px) {
+  .p-menu__grid { grid-template-columns: 1fr; }
+  .p-menu__card { padding: 40px 20px; }
+}
+
+/* Reasons Section */
+.p-reasons__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 120px;
+}
+.p-reasons__item:nth-child(even) {
+  direction: rtl;
+}
+.p-reasons__item:nth-child(even) > * {
+  direction: ltr;
+}
+.p-reasons__number {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: rgba(90, 125, 111, 0.1);
+  line-height: 1;
+  margin-bottom: -0.5em;
+}
+@media (max-width: 768px) {
+  .p-reasons__item { grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; }
+}
+
+/* Doctor Section */
+.p-doctor {
+  background: var(--color-primary);
+  color: #fff;
+}
+.p-doctor__inner {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+.p-doctor__content h2, .p-doctor__content .u-eyebrow {
+  color: #fff;
+}
+.p-doctor__image img {
+  filter: grayscale(100%);
+  transition: filter 0.6s;
+}
+.p-doctor__image:hover img {
+  filter: grayscale(0%);
+}
+@media (max-width: 768px) {
+  .p-doctor__inner { grid-template-columns: 1fr; }
+}
+
+/* Voice Section */
+.p-voice__quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 80px;
+  position: relative;
+  padding: 40px;
+  border: 1px solid var(--color-accent);
+}
+
+/* Access Section */
+.p-access__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.p-access__map {
+  background: #eee;
+  aspect-ratio: 16/9;
+}
+@media (max-width: 768px) {
+  .p-access__grid { grid-template-columns: 1fr; }
+}
+
+/* CTA Section */
+.p-cta {
+  text-align: center;
+  padding: 160px 0;
+  background: #fff;
+}
+
+/* Floating CTA & Buttons */
+.c-btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+.c-btn--outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Utility */
+.u-text-muted { color: #777; font-size: 0.9rem; }
+</style>
+<style>:root{--color-primary:#5A7D6F;--color-accent:#C9B47E;--color-surface:#F9F7F4;--color-text:#3D3D3D;--font-heading:'Shippori Mincho B1', serif;--font-body:'Noto Sans JP', sans-serif;--radius:8px;}</style>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="p-logo">ANGIE PET CLINIC</div>
+  <nav class="c-nav" id="nav">
+    <a href="#hero">TOP</a>
+    <a href="#menu">診療案内</a>
+    <a href="#reasons">当院の理念</a>
+    <a href="#doctor">院長紹介</a>
+    <a href="#access">アクセス</a>
+    <a href="#" class="c-btn">Web予約</a>
+  </nav>
+  <button class="c-hamburger js-nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+    <span class="c-hamburger__bars"></span>
+  </button>
+</header>
+
+<main>
+  <h1 class="sr-only">杉並区の動物病院 アンジーペットクリニック</h1>
+
+  <section class="p-hero" data-section="hero" id="hero">
+    <div class="l-wrapper">
+      <div class="p-hero__inner">
+        <div class="p-hero__content">
+          <span class="u-eyebrow">Suginami, Tokyo</span>
+          <h2 class="u-display">穏やかな時間と、<br>確かな専門性。</h2>
+          <p style="margin: 32px 0; max-width: 480px;">
+            杉並の街で、言葉を話せない家族の小さなサインに応え続けてきました。最新の知見に基づいた専門医療と、飼い主様の心に寄り添う温かな対話を。
+          </p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#" class="c-btn">初めての方へ</a>
+            <a href="tel:0368755925" class="c-btn c-btn--outline">03-6875-5925</a>
+          </div>
+        </div>
+        <div class="p-hero__image">
+          <img src="https://images.unsplash.com/photo-1630438994394-3deff7a591bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBnZW50bGUlMjBleGFtaW5hdGlvbiUyMGRvZ3xlbnwwfDB8fHwxNzg0MzY5OTY0fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="優しく診察する獣医師">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-problem" data-section="problem">
+    <div class="l-wrapper">
+      <div class="p-problem__grid">
+        <div class="p-problem__text">
+          <span class="u-eyebrow">Your Anxiety</span>
+          <h2 class="u-heading-large">その不安を、<br>ひとりで抱えないでください。</h2>
+          <p>大切な家族の体調が優れないとき、飼い主様の不安は計り知れません。私たちは、医学的な根拠に基づいた説明と、ご家族のライフスタイルに合わせた選択肢を提示します。</p>
+        </div>
+        <div class="p-problem__list">
+          <div class="p-problem__item">
+            <span class="p-problem__item-q">何となく元気がない気がする</span>
+            <p class="u-text-muted">些細な変化が大きな病気のサインであることも。まずはじっくりお話を聞かせてください。</p>
+          </div>
+          <div class="p-problem__item">
+            <span class="p-problem__item-q">高度な治療が必要と言われた</span>
+            <p class="u-text-muted">専門的な知見から、セカンドオピニオンを含めた最適な治療方針を共に考えます。</p>
+          </div>
+          <div class="p-problem__item">
+            <span class="p-problem__item-q">最期まで健やかに過ごさせてあげたい</span>
+            <p class="u-text-muted">QOL（生活の質）を最優先に、痛みの少ない緩和ケアやシニアケアも充実しています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-menu" data-section="menu" id="menu">
+    <div class="l-wrapper">
+      <div style="text-align: center; margin-bottom: 80px;">
+        <span class="u-eyebrow">Medical Services</span>
+        <h2 class="u-heading-large">専門性と総合力の両立</h2>
+      </div>
+      <div class="p-menu__grid">
+        <div class="p-menu__card">
+          <h3>一般診療・予防</h3>
+          <p class="u-text-muted">混合ワクチン、フィラリア予防、健康診断など、日常の健康管理を徹底します。</p>
+        </div>
+        <div class="p-menu__card">
+          <h3>専門外来</h3>
+          <p class="u-text-muted">循環器、皮膚科、腫瘍科など、特定の疾患に対する高度な診断・治療を行います。</p>
+        </div>
+        <div class="p-menu__card">
+          <h3>外科・手術</h3>
+          <p class="u-text-muted">避妊・去勢手術から、難易度の高い軟部外科手術まで、安全性を最優先に対応します。</p>
+        </div>
+      </div>
+      <p style="margin-top: 40px; font-size: 0.8rem; color: #888; text-align: center;">
+        ※専門的な技能・療法については、事前にお問い合わせください。診察内容に応じたリスク・費用を丁寧にご説明いたします。
+      </p>
+    </div>
+  </section>
+
+  <section class="p-reasons" data-section="reasons" id="reasons">
+    <div class="l-wrapper">
+      <div class="p-reasons__item">
+        <div>
+          <div class="p-reasons__number">01</div>
+          <h3 class="u-heading-large">地域に根ざした<br>深い信頼関係</h3>
+          <p>杉並区成田東で長年、多くのご家族を見守ってきました。口コミでも高く評価いただいている「話しやすさ」と「丁寧な説明」を大切にしています。</p>
+        </div>
+        <div style="padding: 40px; background: #fff;">
+          <img src="https://images.unsplash.com/photo-1596272875729-ed2ff7d6d9c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwxfHx0cnVzdGluZyUyMHBldCUyMG93bmVyJTIwdmV0ZXJpbmFyaWFuJTIwaW50ZXJhY3Rpb258ZW58MHwwfHx8MTc4NDM2OTk2Nnww&ixlib=rb-4.1.0&q=80&w=1080" alt="飼い主と向き合う獣医師">
+        </div>
+      </div>
+      <div class="p-reasons__item">
+        <div>
+          <div class="p-reasons__number">02</div>
+          <h3 class="u-heading-large">最新設備と<br>研鑽し続ける技術</h3>
+          <p>医療は日々進歩しています。私たちは常に最新の学術論文や技術をアップデートし、この場所で受けられる最善の医療を提供することに妥協しません。</p>
+        </div>
+        <div style="padding: 40px; background: #fff;">
+          <img src="https://images.unsplash.com/photo-1725409796872-8b41e8eca929?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwyfHxjYWxtJTIwY2F0JTIwY2hlY2t1cCUyMHZldHxlbnwwfDB8fHwxNzg0MzY5OTY1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="精密な検査の様子">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-doctor" data-section="doctor" id="doctor">
+    <div class="l-wrapper">
+      <div class="p-doctor__inner">
+        <div class="p-doctor__image">
+          <img src="https://images.unsplash.com/photo-1700665537604-412e89a285c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwyfHx2ZXRlcmluYXJpYW4lMjBnZW50bGUlMjBleGFtaW5hdGlvbiUyMGRvZ3xlbnwwfDB8fHwxNzg0MzY5OTY0fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="アンジーペットクリニック 院長">
+        </div>
+        <div class="p-doctor__content">
+          <span class="u-eyebrow">Director Message</span>
+          <h2 class="u-heading-large">「家族の一員」として、<br>同じ目線で向き合う。</h2>
+          <p style="margin-bottom: 24px;">動物病院は、病気を治すだけの場所ではありません。ペットと飼い主様が、一日でも長く、笑顔で過ごせるようサポートするパートナーでありたいと考えています。どんなに小さなことでも、気軽にご相談ください。</p>
+          <p style="font-family: var(--font-heading); font-size: 1.25rem;">院長 / 獣医学博士<br>アンジーペットクリニック 院長</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-voice" data-section="voice">
+    <div class="l-wrapper">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span class="u-eyebrow">Owner's Voice</span>
+        <h2 class="u-heading-large">飼い主様からのお声</h2>
+      </div>
+      <div class="p-voice__quote">
+        「先生がとても穏やかで、怖がりなうちの子も安心して診察を受けられました。説明が非常に論理的で分かりやすく、納得して治療を任せることができました。」
+        <cite style="display: block; margin-top: 20px; font-size: 1rem; font-style: normal; text-align: right;">— 杉並区在住 T.S様</cite>
+      </div>
+      <div class="p-voice__quote" style="margin-bottom: 0;">
+        「夜間に体調を崩した際も、親身に対応してくださり本当に救われました。専門的な知識はもちろんですが、何より私たちの不安に寄り添ってくれる姿勢に感謝しています。」
+        <cite style="display: block; margin-top: 20px; font-size: 1rem; font-style: normal; text-align: right;">— 杉並区在住 M.K様</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-access" data-section="access" id="access">
+    <div class="l-wrapper">
+      <div class="p-access__grid">
+        <div>
+          <span class="u-eyebrow">Access & Information</span>
+          <h2 class="u-heading-large">アクセス</h2>
+          <address style="font-style: normal; margin-bottom: 32px;">
+            <p style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">アンジーペットクリニック</p>
+            <p>〒166-0015 東京都杉並区成田東３丁目１５−１</p>
+            <p style="margin-top: 16px;">
+              <strong>電話:</strong> <a href="tel:0368755925">03-6875-5925</a><br>
+              <strong>受付:</strong> 9:00 - 12:00 / 16:00 - 19:00<br>
+              <strong>休診:</strong> 水曜・祝日午後
+            </p>
+          </address>
+          <a href="#" class="c-btn c-btn--outline">Googleマップで見る</a>
+        </div>
+        <div class="p-access__map">
+          <!-- 実際にはGoogle Map等のiframeが入る想定 -->
+          <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #e0e5e2; color: var(--color-primary);">
+            MAP AREA
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-cta" data-section="cta">
+    <div class="l-wrapper">
+      <h2 class="u-display" style="margin-bottom: 40px;">大切な家族のために、<br>今できることを。</h2>
+      <p style="margin-bottom: 48px; font-size: 1.1rem;">初診の方も、まずはお電話またはWebよりご相談ください。</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="c-btn" style="min-width: 280px;">Web予約・空き状況確認</a>
+        <a href="tel:0368755925" class="c-btn c-btn--outline" style="min-width: 280px;">お電話でのお問い合わせ</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="padding: 60px 0; background: var(--color-surface); border-top: 1px solid var(--color-line); text-align: center;">
+  <div class="l-wrapper">
+    <div class="p-logo" style="margin-bottom: 24px;">ANGIE PET CLINIC</div>
+    <ul style="display: flex; justify-content: center; gap: 24px; margin-bottom: 32px; font-size: 0.9rem;">
+      <li><a href="#">プライバシーポリシー</a></li>
+      <li><a href="#">動物愛護管理法に基づく表記</a></li>
+    </ul>
+    <p class="u-text-muted">&copy; <span id="y"></span> Angie Pet Clinic. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<div class="c-floating-cta">
+  <a href="#" class="c-btn">Web予約はこちら</a>
+</div>
+
+<script>
+/* nav.js — 全画面ハンバーガーの開閉（背後スクロールロック）。全デモ共通の不変挙動。 */
+(function () {
+  var t = document.querySelector('.js-nav-toggle');
+  var n = document.getElementById('nav');
+  if (t && n) {
+    t.addEventListener('click', function () {
+      var open = t.getAttribute('aria-expanded') === 'true';
+      t.setAttribute('aria-expanded', String(!open));
+      n.classList.toggle('is-open', !open);
+      document.body.style.overflow = open ? '' : 'hidden';
+    });
+    n.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { t.setAttribute('aria-expanded', 'false'); n.classList.remove('is-open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { t.setAttribute('aria-expanded', 'false'); n.classList.remove('is-open'); document.body.style.overflow = ''; } });
+  }
+  var y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+
+  /* スクロールリビール（抑制的モーション）：各 data-section の直下要素を
+     ふわっと表示。クラスはJSで付与するのでJS無効環境では常に見える。
+     prefers-reduced-motion は base.css 側の全体無効化が効く。 */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-inview'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    document.querySelectorAll('[data-section]').forEach(function (sec) {
+      var kids = Array.prototype.slice.call(sec.children);
+      kids.forEach(function (el, i) {
+        el.classList.add('js-reveal');
+        el.style.transitionDelay = Math.min(i * 90, 360) + 'ms';
+        io.observe(el);
+      });
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
