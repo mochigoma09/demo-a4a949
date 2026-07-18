@@ -1,2 +1,3 @@
 # demo-a4a949
-Auto generated demo site for アンジーペットクリニック
+
+AIによって自動生成された アンジーペットクリニック 様向けのデモサイトです。
